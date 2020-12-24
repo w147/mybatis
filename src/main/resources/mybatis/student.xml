@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.plaso.dao.StudentDao" >
+
+    <sql id="selectStudent">
+        SELECT s.id, s.loginname, s.`name` FROM student s
+    </sql>
+    <select id="findByName" parameterType="string"  resultType="com.plaso.bean.Student">
+        <include refid="selectStudent"></include>
+        WHERE s.`name` = #{name}
+    </select>
+
+    <select id="findById" parameterType="int" resultType="com.plaso.bean.Student">
+        <include refid="selectStudent"></include>
+        WHERE s.id = #{id}
+    </select>
+
+</mapper>
